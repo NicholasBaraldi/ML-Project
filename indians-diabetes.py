@@ -15,7 +15,7 @@ df = pd.read_csv("/home/nicholas/Repos/ML-Project/diabetes.csv")
 
 Y = df["Outcome"].values
 
-df_train, df_test, Y_train, Y_test = train_test_split(df, Y, test_size=0.25, shuffle = False)
+df_train, df_test, Y_train, Y_test = train_test_split(df, Y, test_size=0.25, random_state = 42)
 
 df_test.drop("Outcome", inplace=True, axis=1)
 
