@@ -43,7 +43,7 @@ predictions_v2 = model_v2.predict(X_test)
 
 print("{0:.4f}".format(metrics.accuracy_score(Y_test, predictions_v2)))
 
-model_v3 = LogisticRegression(C = 0.7, random_state = 42) #Testing Regression model
+model_v3 = LogisticRegression(C = 0.7, max_iter = 140, random_state = 42) #Testing Regression model
 model_v3.fit(X_train, Y_train)
 predictions_v3 = model_v3.predict(X_test)
 
