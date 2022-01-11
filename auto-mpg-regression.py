@@ -7,7 +7,7 @@ from sklearn.metrics import explained_variance_score
 
 df = pd.read_csv("/home/nicholas/Repos/ML-Project/auto-mpg.tsv", sep = '\s+', names = ['mpg', 'cylinders', 'displacement', 'horsepower', 'weight', 'acceleration', 'model_year', 'origin', 'name'])
 
-#df = df[~df.isin(['?'])]
+df = df[df.horsepower != "?"]
 
 Y = df['mpg']
 
@@ -20,14 +20,9 @@ features_year = ['cylinders', 'displacement', 'horsepower', 'weight', 'accelerat
 X_test = df_test[features]
 X_train = df_train[features]
 
-substitute_0_to_mean = SimpleImputer(missing_values = '?', strategy = 'most_frequent')
+#model = svm.SVR()
 
-X_train = substitute_0_to_mean.fit_transform(X_train)
-X_test = substitute_0_to_mean.fit_transform(X_test)
-
-model = svm.SVR()
-
-#model = RandomForestRegressor(n_estimators=100, max_depth=5, random_state=1)
+model = RandomForestRegressor(n_estimators=100, max_depth=5, random_state=1)
 
 model.fit(X_train, Y_train)
 predict = model.predict(X_test)
